@@ -1,0 +1,18 @@
+  public void leituraBufferedReader(String caminhoEntrada) throws IOException {
+    BufferedReader buffer = null;
+    String linha = null;
+    List<String> dadosParaAnalise = new ArrayList<String>();
+    try {
+      buffer = new BufferedReader(new FileReader(caminhoEntrada));
+      while ((linha = buffer.readLine()) != null) {
+        String[] splitLinha = linha.split(" ");
+        dadosParaAnalise.addAll(Arrays.asList(splitLinha));
+      }
+      dadosParaAnalise.forEach(System.out::println);
+      analisarEstrutura(dadosParaAnalise);
+    } finally {
+      if (buffer != null) {
+        buffer.close();
+      }
+    }
+  }
