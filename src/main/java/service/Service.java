@@ -9,14 +9,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 public class Service {
 
+  Logger logger = Logger.getLogger(Service.class.getName());
   List<String> palavrasPrivadas = Arrays.asList("int", "if", "switch", "while", "Integer", "Double", "double", "char", "String", "public", "void",
           "throws", "private", "class", "List", "ArrayList", "forEach", "new", "try", "catch", "null", "List");
-  List<String> simbolos = Arrays.asList("(", ")", "+", "-", "/", "*", "^", "{", "}", ";", "?", "||", "&&", "=", "=>",
-          "<=", "<", ">");
+  List<String> simbolos = Arrays.asList("(", ")", "+", "-", "/", "*", "^", "{", "}", ";", "?", "||", "&&", "=", "=>", "->", "!", "<>", "[", "]",
+          "<=", "<", ">", "!=", "==", "--", "++", "=!");
   List<Token> tokens = new ArrayList<>();
   List<String> tabelaDeSimbolos = new ArrayList<>();
   Pattern isNumero = Pattern.compile("(^[0-9])");
@@ -31,7 +33,6 @@ public class Service {
         String[] splitLinha = linha.split(" ");
         dadosParaAnalise.addAll(Arrays.asList(splitLinha));
       }
-      dadosParaAnalise.forEach(System.out::println);
       analisarEstrutura(dadosParaAnalise);
     } finally {
       if (buffer != null) {
@@ -62,6 +63,7 @@ public class Service {
       }
     });
     tokens.forEach(c -> System.out.println(c.toString()));
+    logger.info("Finalização de analise léxica");
   }
 
 
