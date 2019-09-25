@@ -2,6 +2,8 @@ package model;
 
 public class Token {
 
+  private Integer id;
+
   private String key;
 
   private String value;
@@ -14,6 +16,12 @@ public class Token {
   public Token() {
   }
 
+  public Token(Integer id, String key, String value) {
+    this.id = id;
+    this.key = key;
+    this.value = value;
+  }
+
   public String getKey() {
     return key;
   }
@@ -24,7 +32,7 @@ public class Token {
 
   @Override
   public String toString() {
-    return "Token - " +
+    return " " + id + " - Token : " +
             "key='" + key + '\'' +
             ", value='" + value + '\'';
   }

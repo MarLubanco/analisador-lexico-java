@@ -9,6 +9,6 @@ public class AnalisadorLexicoMain {
     Service service = new Service();
     Logger logger = Logger.getLogger(AnalisadorLexicoMain.class.getName());
     logger.info("Iniciando Analisador Léxico");
-    service.leituraBufferedReader("arquivo-java.txt");
+    service.leituraBufferedReader("C:\\Users\\marcel_cb\\Documents\\analisador-lexico-java\\src\\main\\java\\BubbleSort.java");
   }
 }
