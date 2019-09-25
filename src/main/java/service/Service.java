@@ -16,8 +16,8 @@ public class Service {
     Logger logger = Logger.getLogger(Service.class.getName());
     List<String> palavrasPrivadas = Arrays.asList("int", "if", "switch", "main", "while", "Integer", "static", "Double", "double", "char", "String", "public", "void",
             "throws", "private", "class", "System.out.println", "for", "List", "ArrayList", "return", "else", "if", "forEach", "new", "try", "catch", "null", "List");
-    List<String> simbolos = Arrays.asList("(", ")", "+", "-", "/", "*", "^", "{", "}", ";", "?", "||", "&&", "=", "=>", "->", "!", "<>", "[", "]",
-            "<=", "<", ">", "!=", "==", "--", "++", "=!", "?");
+    List<String> simbolos = Arrays.asList("(", ")", "+", "-", "/", "*", "^", "{", "}", ";", "?",  "=", "!", "[", "]", "<", ">", "?");
+    List<String> simbolosComposto = Arrays.asList("||", "&&", "=>", "->", "<>","++","<=","!=", "==", "--", "=!");
     List<Token> tokens = new ArrayList<>();
     List<String> tabelaDeSimbolos = new ArrayList<>();
     Pattern isNumero = Pattern.compile("(^[0-9])");
@@ -59,6 +59,8 @@ public class Service {
                     }  if (palavrasPrivadas.contains(dado)) {
                         tokens.add(new Token(contador.get(), "PR", dado));
                         contador.getAndSet(contador.get() + 1);
+                    } else if(simbolosComposto.contains(dados)) {
+                        tokens.add(new Token(contador.get(), "SC", dado));
                     }  else if (simbolos.contains(dado)) {
                         tokens.add(new Token(contador.get(), "SS", dado));
                         contador.getAndSet(contador.get() + 1);
